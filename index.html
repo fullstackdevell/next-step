@@ -26,11 +26,11 @@
         </section>
 
         <section class="assignment-card" aria-labelledby="assignment-title">
-          <div class="assignment-meta"><span class="course-chip">YOUR CASE STUDY</span><span>Human-Computer Interaction</span></div>
-          <h2 id="assignment-title">Suggest one new feature for a student wellness app.</h2>
-          <p>Read Westley et al. (2026). Use one idea from the paper to help students feel supported.</p>
-          <button class="start-button" id="breakdown-button" type="button"><span>✦</span><span>I'm stuck — help me start</span><b>→</b></button>
-          <button class="source-link" id="source-button" type="button"><span class="pdf-icon">PDF</span><span>Using your research paper</span><span class="source-arrow">↗</span></button>
+          <div class="assignment-meta"><span class="course-chip">START HERE</span><span>Paste your task or use the sample</span></div>
+          <label class="assignment-label" for="assignment-prompt" id="assignment-title">What are you working on?</label>
+          <textarea class="assignment-prompt-input" id="assignment-prompt" rows="2">Assignment: Design 1 feature for a student stress-relief app based on the study.</textarea>
+          <div class="assignment-tools"><div class="attached-file"><span class="pdf-icon">PDF</span><span id="file-name">Westley_et_al_2026_Wellness.pdf</span><span class="file-ready" id="file-ready">Ready</span></div><button class="upload-button" id="upload-button" type="button"><span>↑</span> Upload PDF / Assignment</button><button class="source-link" id="source-button" type="button">About the paper <span class="source-arrow">↗</span></button></div>
+          <button class="start-button" id="breakdown-button" type="button"><span>✦</span><span>Break this down</span><b>→</b></button>
         </section>
 
         <section class="study-workspace" id="work-area" hidden aria-live="polite">
@@ -39,16 +39,16 @@
             <div class="progress-summary"><span id="progress-number">0%</span><div class="progress-track"><span id="progress-bar"></span></div></div>
           </div>
           <div class="step-track" aria-label="Assignment progress">
-            <div class="track-step current" id="track-one"><span>1</span><small>Pick an idea</small></div><i></i>
+            <div class="track-step current" id="track-one"><span>1</span><small>Pick a problem</small></div><i></i>
             <div class="track-step" id="track-two"><span>2</span><small>Choose a feature</small></div><i></i>
-            <div class="track-step" id="track-three"><span>3</span><small>Write it down</small></div>
+            <div class="track-step" id="track-three"><span>3</span><small>Say how it helps</small></div>
           </div>
 
           <div class="active-layout">
             <section class="active-card" aria-labelledby="active-title">
-              <div class="active-kicker"><span class="active-spark">✦</span><span id="active-label">STEP 1 OF 3 · A 5-MINUTE START</span></div>
-              <h2 id="active-title">What could help a student feel a little better?</h2>
-              <p class="active-description" id="active-description">Pick one idea from the paper. There’s no perfect answer.</p>
+              <div class="active-kicker"><span class="active-spark">✦</span><span id="active-label">STEP 1 OF 3</span></div>
+              <h2 id="active-title">Pick one problem to solve.</h2>
+              <p class="active-description" id="active-description">Choose what a student might need help with.</p>
               <div class="active-content" id="active-content"></div>
               <div class="active-footer"><button class="citation-link" id="active-citation" type="button"><span>▤</span><span>See where this idea comes from</span><span>↗</span></button><button class="continue-button" id="continue-button" type="button"><span>Save this step</span><b>→</b></button></div>
             </section>
@@ -62,7 +62,7 @@
                 <button type="button" data-help="example"><span>✦</span> Show an example</button>
                 <button type="button" data-help="quiz"><span>?</span> Test my knowledge</button>
               </div>
-              <div class="coach-foot"><span class="mock-dot"></span> Sample guidance from your paper</div>
+              <div class="coach-foot"><span class="mock-dot"></span> Example help · ready to try</div>
             </aside>
           </div>
           <div class="encouragement" id="encouragement" hidden><span>✦</span><p><strong id="encouragement-title">One small step done — you’ve got this!</strong><small id="encouragement-copy">Ready for what comes next?</small></p><button id="encouragement-next" type="button" aria-label="Continue to next step">→</button></div>
