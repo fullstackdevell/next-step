@@ -1,81 +1,424 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#18181b" />
-    <meta name="description" content="Turn a hard task into one small next step." />
-    <title>Next Step — Start here</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <header class="topbar">
-      <a class="brand" href="#top" aria-label="Next Step home"><span class="brand-mark"><i></i><i></i><i></i></span><span>next<span>step</span></span></a>
-      <span class="top-note">One step at a time</span>
-    </header>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#18181b" />
+  <meta name="description" content="Build a student-centered feature proposal one step at a time." />
+  <title>Next Step — HCI Feature Proposal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"] } } } };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { color-scheme: dark; }
+    html { scroll-behavior: smooth; }
+    body { min-width: 320px; }
+    button, textarea { font: inherit; }
+    button:focus-visible, textarea:focus-visible { outline: 2px solid #e879f9; outline-offset: 3px; }
+    textarea { resize: vertical; }
+    [hidden] { display: none !important; }
+    .fade-in { animation: fadeIn .22s ease-out both; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body class="bg-[#18181b] font-sans text-[#fafafa] antialiased selection:bg-fuchsia-500/30">
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+    <div class="absolute -top-48 left-[15%] h-96 w-96 rounded-full bg-fuchsia-600/[0.09] blur-3xl"></div>
+    <div class="absolute right-[-8rem] top-[38rem] h-96 w-96 rounded-full bg-pink-500/[0.06] blur-3xl"></div>
+  </div>
 
-    <main class="page" id="top">
-      <section class="intro">
-        <div class="eyebrow"><span></span> YOUR WORKSPACE</div>
-        <h1>Pick a task.<br /><em>Start small.</em></h1>
-        <p>Choose a class, then turn the work into clear next steps.</p>
-      </section>
+  <header class="border-b border-white/[0.07] bg-[#18181b]/90 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <a href="#top" class="flex items-center gap-3 rounded-lg" aria-label="Next Step home">
+        <span class="grid h-10 w-10 place-items-center rounded-xl border border-fuchsia-400/20 bg-fuchsia-500/10 text-fuchsia-300"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" aria-hidden="true"><path d="M5 17.5 10.2 12l3.3 3.5L19 8m-4.5 0H19v4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="text-lg font-extrabold tracking-tight">next<span class="font-medium text-fuchsia-300">step</span></span>
+      </a>
+      <span class="hidden items-center gap-2 text-xs text-zinc-400 sm:flex"><span class="h-2 w-2 rounded-full bg-emerald-400"></span>Guided work · your ideas stay yours</span>
+    </div>
+  </header>
 
-      <section class="task-card" aria-labelledby="task-heading">
-        <div class="section-top"><div><span class="section-kicker">START HERE</span><h2 id="task-heading">What are you working on?</h2></div><span class="step-time">About 5 min to start</span></div>
-        <label class="field-label" for="course-select">Choose a class or task</label>
-        <select id="course-select">
-          <option value="">Choose a class or task…</option>
-          <option value="hci">Psychology / HCI — Write a feature proposal based on Westley et al. (2026)</option>
-          <option value="cs">Computer Science — Solve a coding problem, like Two Sum or array traversal</option>
-          <option value="english">English / Literature — Analyze character motivation in a short essay</option>
-        </select>
-        <div class="demo-tools" aria-label="Demo helpers">
-          <span class="demo-label">DEMO HELPERS</span>
-          <button type="button" id="demo-task-button">Demo: Load Sample Task</button>
-          <button type="button" id="demo-pdf-button">Demo: Load Sample PDF</button>
-        </div>
-        <div class="field-label-row"><label class="field-label" for="task-input">Your assignment</label><button type="button" class="mock-fill" id="task-autofill">Auto-fill mock response</button></div>
-        <textarea id="task-input" rows="3" placeholder="Type or paste your assignment…"></textarea>
-        <div class="task-actions">
-          <div class="upload-group">
-            <input id="file-input" type="file" accept=".pdf,.doc,.docx,.txt" hidden />
-            <button type="button" class="upload-button" id="upload-button"><span>＋</span> Upload Assignment / PDF</button>
-            <span class="attached-file" id="attached-file" hidden><span class="pdf-icon">PDF</span><span id="file-name"></span><button type="button" id="remove-file" aria-label="Remove attached file">×</button></span>
+  <main id="top" class="mx-auto max-w-6xl px-4 py-7 sm:px-6 sm:py-10 lg:px-8">
+    <div class="grid items-start gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(300px,.75fr)]">
+      <section id="workflow-card" class="rounded-2xl border border-white/[0.09] bg-[#27272a] p-5 shadow-2xl shadow-black/10 sm:p-7" aria-labelledby="workflow-heading">
+        <div id="task-entry-panel">
+          <p class="text-xs font-bold uppercase tracking-[.15em] text-fuchsia-300">Start here</p>
+          <h2 class="mt-1 text-xl font-bold text-white">Add your assignment</h2>
+          <p class="mt-2 text-sm leading-6 text-zinc-400">Paste the task or upload a PDF or text file. We’ll turn it into three small steps.</p>
+          <label for="task-input" class="mt-5 mb-2 block text-xs font-semibold text-zinc-300">Assignment prompt</label>
+          <textarea id="task-input" rows="5" class="block w-full rounded-xl border border-zinc-600 bg-[#1f1f23] px-4 py-3 text-sm leading-6 text-white placeholder:text-zinc-600 transition focus:border-fuchsia-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500/15" placeholder="Paste or type your assignment here…"></textarea>
+          <div class="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <input id="task-file-input" type="file" accept=".pdf,.txt,.md,text/plain,application/pdf" hidden />
+              <div class="flex flex-wrap gap-2"><button id="upload-task-button" type="button" class="inline-flex min-h-10 items-center gap-2 rounded-lg border border-zinc-600 bg-zinc-800/70 px-3 py-2 text-xs font-semibold text-zinc-200 transition hover:border-fuchsia-400/40 hover:bg-fuchsia-500/[0.07]">＋ Upload PDF / Assignment</button><button id="demo-task-button" type="button" class="inline-flex min-h-10 items-center gap-2 rounded-lg border border-fuchsia-400/25 bg-fuchsia-500/[0.07] px-3 py-2 text-xs font-semibold text-fuchsia-200 transition hover:border-fuchsia-300/50 hover:bg-fuchsia-500/[0.12]">Demo: Load Sample Task</button></div>
+              <p id="upload-status" class="mt-2 text-xs text-zinc-500" aria-live="polite">PDF and text files supported</p>
+            </div>
+            <button id="start-task-button" type="button" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-fuchsia-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-fuchsia-950/30 transition hover:bg-fuchsia-400 active:scale-[.98]">Break it down <span aria-hidden="true">→</span></button>
           </div>
-          <button type="button" class="primary-button" id="breakdown-button">Break it down <span>→</span></button>
+          <p id="task-entry-feedback" hidden class="mt-3 rounded-lg border border-rose-400/15 bg-rose-400/[0.06] px-3 py-2 text-sm text-rose-200" role="status" aria-live="polite"></p>
+        </div>
+
+        <div id="step-workflow" hidden>
+        <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div><p class="text-xs font-bold uppercase tracking-[.15em] text-fuchsia-300">Your proposal, one piece at a time</p><h2 id="workflow-heading" class="mt-1 text-xl font-bold text-white">Let’s make a clear start</h2></div>
+          <div class="sm:text-right"><p id="progress-label" class="text-sm font-semibold text-zinc-200">Step 1 of 3: Initial Proposal Idea</p><p class="mt-1 text-xs text-zinc-500">About 5 minutes · no perfect answer needed</p></div>
+        </div>
+
+        <div class="mb-6 flex gap-2" role="group" aria-label="Proposal progress"><span class="progress-bar h-1.5 flex-1 rounded-full bg-fuchsia-400"></span><span class="progress-bar h-1.5 flex-1 rounded-full bg-zinc-700"></span><span class="progress-bar h-1.5 flex-1 rounded-full bg-zinc-700"></span></div>
+
+        <div class="mb-5 flex items-start gap-3">
+          <span id="step-number" class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-fuchsia-500/15 text-sm font-bold text-fuchsia-200">1</span>
+          <div><h3 id="step-title" class="text-lg font-bold text-white">Define the core feature concept</h3><p id="step-prompt" class="mt-1 text-sm leading-6 text-zinc-400">What feature could help a learner stay engaged during a difficult study task?</p></div>
+        </div>
+
+        <div class="mb-2 flex flex-wrap items-center justify-between gap-2"><label id="response-label" for="step-response" class="text-xs font-semibold text-zinc-300">Your feature idea</label><button id="autofill-button" type="button" class="rounded-md py-1 text-xs font-bold text-fuchsia-400 transition hover:text-fuchsia-300 hover:underline">[Demo: Fill this step]</button></div>
+        <textarea id="step-response" rows="4" class="block w-full rounded-xl border border-zinc-600 bg-[#1f1f23] px-4 py-3 text-sm leading-6 text-white placeholder:text-zinc-600 transition focus:border-fuchsia-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-500/15" placeholder="Write a rough idea in your own words…"></textarea>
+
+        <div class="mt-4 flex flex-wrap items-center gap-2"><button type="button" data-hint="simple" class="hint-trigger rounded-lg border border-zinc-600 bg-zinc-800/70 px-3 py-2 text-xs font-semibold text-zinc-200 transition hover:border-fuchsia-400/40 hover:bg-fuchsia-500/[0.07]">Explain simply</button><button type="button" data-hint="example" class="hint-trigger rounded-lg border border-zinc-600 bg-zinc-800/70 px-3 py-2 text-xs font-semibold text-zinc-200 transition hover:border-fuchsia-400/40 hover:bg-fuchsia-500/[0.07]">Show example</button></div>
+        <div id="hint-card" hidden class="mt-3 rounded-xl border border-fuchsia-400/20 bg-fuchsia-500/[0.06] px-4 py-3 text-sm leading-6 text-fuchsia-100" aria-live="polite"></div>
+
+        <div class="mt-6 flex flex-col-reverse gap-3 border-t border-white/[0.07] pt-5 sm:flex-row sm:items-center sm:justify-between"><p class="text-xs text-zinc-500">Small, thoughtful steps make strong proposals.</p><button id="submit-step" type="button" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-fuchsia-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-fuchsia-950/30 transition hover:bg-fuchsia-400 active:scale-[.98]">Save step and continue <span aria-hidden="true">→</span></button></div>
+        <p id="step-feedback" hidden class="mt-3 rounded-lg border border-emerald-400/15 bg-emerald-400/[0.06] px-3 py-2 text-sm text-emerald-200" role="status" aria-live="polite"></p>
         </div>
       </section>
 
-      <section class="plan" id="plan" hidden aria-live="polite">
-        <div class="plan-header"><div><span class="section-kicker">YOUR 3 STEPS</span><h2 id="plan-title">A clear path forward</h2></div><div class="progress"><strong id="progress-number">0%</strong><div class="progress-track"><span id="progress-bar"></span></div></div></div>
-        <ol class="step-list">
-          <li class="step-row active" id="step-row-0"><span class="step-number">1</span><span class="step-name" id="step-name-0">Pick 1 core idea from the material</span><span class="step-state" id="step-state-0">Now</span></li>
-          <li class="step-row" id="step-row-1"><span class="step-number">2</span><span class="step-name" id="step-name-1">Sketch or write 1 simple feature idea</span><span class="step-state" id="step-state-1"></span></li>
-          <li class="step-row" id="step-row-2"><span class="step-number">3</span><span class="step-name" id="step-name-2">Write a 2-sentence summary</span><span class="step-state" id="step-state-2"></span></li>
-        </ol>
-        <section class="active-step" id="active-step" aria-labelledby="active-title">
-          <div class="active-heading"><span class="active-icon">✦</span><div><span class="active-kicker" id="active-kicker">STEP 1</span><h3 id="active-title">Pick one core idea.</h3></div></div>
-          <p class="active-prompt" id="active-prompt">What’s one useful idea from the material?</p>
-          <div class="help-tools"><button type="button" data-helper="simple">Explain simply</button><button type="button" data-helper="example">Show example</button></div>
-          <div class="hint" id="hint" hidden aria-live="polite"></div>
-          <div class="field-label-row response-label-row"><label class="field-label" for="response-input">Your quick response</label><button type="button" class="mock-fill" id="response-autofill">Auto-fill mock response</button></div>
-          <textarea id="response-input" rows="3" placeholder="Write your quick response…"></textarea>
-          <div class="step-actions"><span class="response-note">A few words is enough.</span><button type="button" class="done-button" id="done-button">Mark Step Done <span>✓</span></button></div>
+      <aside class="space-y-4" aria-label="Proposal guide">
+        <section class="rounded-2xl border border-white/[0.09] bg-[#27272a] p-5 sm:p-6">
+          <div class="flex items-center justify-between gap-3"><h2 class="text-sm font-bold text-white">Your 3-step path</h2><span class="text-[11px] text-zinc-500">One active step</span></div>
+          <ol class="mt-4 space-y-2">
+            <li class="path-item flex items-center gap-3 rounded-xl border border-fuchsia-400/25 bg-fuchsia-500/[0.07] px-3 py-3"><span class="path-number grid h-7 w-7 shrink-0 place-items-center rounded-full border border-fuchsia-300/30 bg-fuchsia-500/15 text-xs font-bold text-fuchsia-200">1</span><span class="min-w-0 flex-1"><span class="block text-xs font-bold text-white">Initial Proposal Idea</span><span class="mt-0.5 block text-[11px] text-zinc-400">Define the core feature concept</span></span><span class="path-status text-[10px] font-semibold text-fuchsia-200">NOW</span></li>
+            <li class="path-item flex items-center gap-3 rounded-xl border border-white/[0.05] bg-[#1f1f23]/60 px-3 py-3"><span class="path-number grid h-7 w-7 shrink-0 place-items-center rounded-full border border-zinc-700 text-xs text-zinc-500">2</span><span class="min-w-0 flex-1"><span class="block text-xs font-semibold text-zinc-300">User Impact</span><span class="mt-0.5 block text-[11px] text-zinc-500">Outline load and engagement benefits</span></span><span class="path-status text-[10px] text-zinc-600"></span></li>
+            <li class="path-item flex items-center gap-3 rounded-xl border border-white/[0.05] bg-[#1f1f23]/60 px-3 py-3"><span class="path-number grid h-7 w-7 shrink-0 place-items-center rounded-full border border-zinc-700 text-xs text-zinc-500">3</span><span class="min-w-0 flex-1"><span class="block text-xs font-semibold text-zinc-300">Implementation &amp; Metrics</span><span class="mt-0.5 block text-[11px] text-zinc-500">Plan a test for your idea</span></span><span class="path-status text-[10px] text-zinc-600"></span></li>
+          </ol>
         </section>
-        <section class="completion-card" id="completion-card" hidden aria-live="polite">
-          <div class="completion-badge">✓</div><div><span class="active-kicker">TASK COMPLETE</span><h3>Nice job! Step completed.</h3><p>Task complete — you built momentum!</p></div>
-          <button type="button" class="return-button" id="return-button">Return to Main Dashboard <span>↗</span></button>
-        </section>
-        <div class="encouragement" id="encouragement" hidden><span class="encouragement-star">✦</span><p><strong id="encouragement-title">One small step done — you’ve got this!</strong><small id="encouragement-copy">Ready for the next step?</small></p></div>
-      </section>
 
-      <footer class="footer"><span>Made for learning, one step at a time.</span><span>✦</span></footer>
-    </main>
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="./app.js"></script>
-  </body>
+        <section class="rounded-2xl border border-white/[0.09] bg-[#27272a] p-5 sm:p-6" aria-labelledby="library-heading"><div class="flex items-center justify-between gap-3"><div><h2 id="library-heading" class="text-sm font-bold text-white">Completed tasks</h2><p id="library-storage-label" class="mt-1 text-xs text-zinc-500">Saved on this device</p></div><span id="library-count" class="rounded-full border border-white/[0.08] px-2.5 py-1 text-[11px] font-semibold text-zinc-400">0</span></div><p id="library-empty" class="mt-4 text-sm text-zinc-500">Your completed proposals will appear here.</p><ol id="library-list" class="mt-4 space-y-3"></ol></section>
+      </aside>
+    </div>
+
+    <section id="completion-card" hidden class="mt-6 rounded-2xl border border-emerald-400/20 bg-[#27272a] p-5 shadow-xl shadow-black/10 sm:p-7" aria-live="polite" aria-labelledby="completion-title">
+      <div class="flex flex-col gap-5 sm:flex-row sm:items-start"><span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-emerald-300/20 bg-emerald-400/10 text-2xl text-emerald-200" aria-hidden="true">✓</span><div class="min-w-0 flex-1"><p class="text-xs font-bold uppercase tracking-[.15em] text-emerald-300">All three steps complete</p><h2 id="completion-title" class="mt-1 text-xl font-extrabold text-white sm:text-2xl">Nice job! Task complete—you built momentum!</h2><p class="mt-2 text-sm text-zinc-400">Here’s the feature proposal you built, one piece at a time.</p><ol id="proposal-summary" class="mt-5 grid gap-3 md:grid-cols-3"></ol><button id="return-button" type="button" class="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-fuchsia-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-fuchsia-950/30 transition hover:bg-fuchsia-400 active:scale-[.98]">Return to Main Dashboard <span aria-hidden="true">↻</span></button></div></div>
+    </section>
+
+    <footer class="mt-8 flex flex-col gap-2 border-t border-white/[0.07] py-4 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between"><span>Next Step · Build understanding, one action at a time.</span><span class="inline-flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-fuchsia-400"></span>Demo responses stay in this page</span></footer>
+  </main>
+
+  <script>
+    (() => {
+      const steps = [
+        {
+          title: "Define the core feature concept", progress: "Initial Proposal Idea",
+          prompt: "What feature could help a learner stay engaged during a difficult study task?",
+          label: "Your feature idea", placeholder: "Write a rough idea in your own words…",
+          mock: "Drawing on Designing evidence-based digital mental health check-ins in higher education (Westley et al., 2026), we propose an adaptive prompt feature that adjusts hint timing to each learner’s pace.",
+          mockNote: "This adaptive feature is our proposal inspired by the paper; the study did not evaluate prompt throttling.",
+          simple: "Choose one helpful feature and say what it does. Keep it to one clear idea that connects to the paper.",
+          example: "Example: If someone pauses for a while, the app could offer one gentle hint. If they’re moving quickly, it could stay out of the way.",
+          summaryLabel: "Feature concept"
+        },
+        {
+          title: "Outline user impact and cognitive load benefits", progress: "User Impact",
+          prompt: "How could this feature affect the user’s focus or effort during a challenging task?",
+          label: "User impact and cognitive load", placeholder: "Describe how this might help the user…",
+          mock: "This reduces cognitive overhead during high-friction tasks by 35%, allowing users to maintain flow state without feeling overwhelmed.",
+          mockNote: "Demo hypothesis: the paper does not report a 35% reduction. Treat this number as a claim to test, not a study finding.",
+          simple: "Explain what could feel easier for the user. How might the feature help them stay focused instead of feeling overloaded?",
+          example: "Example: A hint appears only when needed, so the learner can keep working without sorting through extra instructions.",
+          summaryLabel: "User impact"
+        },
+        {
+          title: "Draft implementation and success metrics", progress: "Implementation & Metrics",
+          prompt: "What would you build first, and what would you measure to learn whether it helped?",
+          label: "First test and success measure", placeholder: "Describe a small test and how you’ll measure it…",
+          mock: "We will measure success via task completion speed and post-session cognitive load surveys over a 2-week trial.",
+          simple: "Name a small way to try the feature, then choose one or two signs that it helped.",
+          example: "Example: Test the prompt timing with a small group and compare how long tasks take and how demanding they feel.",
+          summaryLabel: "Implementation & metrics"
+        }
+      ];
+
+      let activeStep = 0;
+      const responses = ["", "", ""];
+      const libraryStorageKey = "next-step-completed-proposals-v1";
+      let inMemoryLibrary = [];
+      let libraryStorageUnavailable = false;
+      let uploadedFileName = "";
+      const responseField = document.getElementById("step-response");
+      const hintCard = document.getElementById("hint-card");
+      const feedback = document.getElementById("step-feedback");
+      const workflowCard = document.getElementById("workflow-card");
+      const completionCard = document.getElementById("completion-card");
+      const progressLabel = document.getElementById("progress-label");
+      const taskEntryPanel = document.getElementById("task-entry-panel");
+      const stepWorkflow = document.getElementById("step-workflow");
+      const taskInput = document.getElementById("task-input");
+      const taskEntryFeedback = document.getElementById("task-entry-feedback");
+      const uploadStatus = document.getElementById("upload-status");
+      const pathItems = [...document.querySelectorAll(".path-item")];
+      const progressBars = [...document.querySelectorAll(".progress-bar")];
+
+      function readLibrary() {
+        if (libraryStorageUnavailable) return inMemoryLibrary;
+        try {
+          const saved = JSON.parse(localStorage.getItem(libraryStorageKey) || "[]");
+          return Array.isArray(saved) ? saved : [];
+        } catch { return inMemoryLibrary; }
+      }
+
+      function renderLibrary() {
+        const entries = readLibrary();
+        const list = document.getElementById("library-list");
+        list.replaceChildren();
+        document.getElementById("library-count").textContent = String(entries.length);
+        document.getElementById("library-empty").hidden = entries.length > 0;
+        entries.forEach((entry, entryIndex) => {
+          const item = document.createElement("li");
+          item.className = "rounded-xl border border-white/[0.07] bg-[#1f1f23] p-3";
+          const details = document.createElement("details");
+          const summary = document.createElement("summary");
+          summary.className = "cursor-pointer list-none text-xs font-semibold text-zinc-200 marker:hidden";
+          const when = new Date(entry.completedAt);
+          summary.textContent = `Proposal ${entries.length - entryIndex} · ${Number.isNaN(when.getTime()) ? "Completed" : when.toLocaleString()}`;
+          const task = document.createElement("p");
+          task.className = "mt-2 text-xs leading-5 text-zinc-400";
+          task.textContent = entry.task || "Assignment";
+          details.append(summary, task);
+          (entry.responses || []).forEach((response, responseIndex) => {
+            const answer = document.createElement("p");
+            answer.className = "mt-2 border-l border-fuchsia-400/30 pl-2 text-xs leading-5 text-zinc-300";
+            answer.textContent = `${steps[responseIndex]?.summaryLabel || `Step ${responseIndex + 1}`}: ${response}`;
+            details.append(answer);
+          });
+          item.append(details);
+          list.append(item);
+        });
+      }
+
+      function saveCompletedProposal() {
+        const entries = readLibrary();
+        entries.unshift({ task: currentTask, fileName: uploadedFileName, responses: [...responses], completedAt: new Date().toISOString() });
+        inMemoryLibrary = entries;
+        try { localStorage.setItem(libraryStorageKey, JSON.stringify(entries)); }
+        catch {
+          libraryStorageUnavailable = true;
+          document.getElementById("library-storage-label").textContent = "Saved until this page closes";
+        }
+        renderLibrary();
+      }
+
+      let currentTask = "";
+
+      async function loadPdfText(file) {
+        if (!window.pdfjsLib) {
+          await new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+            script.onload = resolve;
+            script.onerror = () => reject(new Error("PDF reader could not load. You can paste the assignment text instead."));
+            document.head.append(script);
+          });
+        }
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+        const pdf = await window.pdfjsLib.getDocument({ data: await file.arrayBuffer() }).promise;
+        const pages = [];
+        for (let pageNo = 1; pageNo <= Math.min(pdf.numPages, 12); pageNo += 1) {
+          const page = await pdf.getPage(pageNo);
+          const content = await page.getTextContent();
+          pages.push(content.items.map((item) => item.str).join(" "));
+        }
+        return pages.join("\n\n").trim();
+      }
+
+      document.getElementById("upload-task-button").addEventListener("click", () => document.getElementById("task-file-input").click());
+      document.getElementById("demo-task-button").addEventListener("click", () => {
+        taskInput.value = "Read Designing evidence-based digital mental health check-ins in higher education and propose one evidence-based feature for a student wellness app";
+        uploadedFileName = "";
+        document.getElementById("task-file-input").value = "";
+        uploadStatus.textContent = "Sample task loaded — click Break it down to begin.";
+        taskEntryFeedback.hidden = true;
+        taskInput.focus();
+      });
+      document.getElementById("task-file-input").addEventListener("change", async (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        uploadedFileName = file.name;
+        uploadStatus.textContent = `Reading ${file.name}…`;
+        taskEntryFeedback.hidden = true;
+        try {
+          let extractedText = "";
+          if (file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf")) extractedText = await loadPdfText(file);
+          else extractedText = await file.text();
+          if (!extractedText) throw new Error("No selectable text found. Paste the task text below to continue.");
+          taskInput.value = extractedText.slice(0, 30000);
+          uploadStatus.textContent = `${file.name} added${extractedText.length > 30000 ? " · first 30,000 characters loaded" : ""}`;
+        } catch (error) {
+          uploadedFileName = "";
+          uploadStatus.textContent = "PDF or text upload";
+          taskEntryFeedback.textContent = error.message || "Couldn’t read that file. Paste the assignment text to continue.";
+          taskEntryFeedback.hidden = false;
+        }
+      });
+
+      document.getElementById("start-task-button").addEventListener("click", () => {
+        const value = taskInput.value.trim();
+        if (!value) {
+          taskEntryFeedback.textContent = "Paste or upload your assignment to get started.";
+          taskEntryFeedback.hidden = false;
+          taskInput.focus();
+          return;
+        }
+        currentTask = value;
+        responses.fill("");
+        activeStep = 0;
+        taskEntryFeedback.hidden = true;
+        taskEntryPanel.hidden = true;
+        stepWorkflow.hidden = false;
+        renderStep();
+      });
+
+      function renderStep() {
+        const step = steps[activeStep];
+        document.getElementById("step-number").textContent = String(activeStep + 1);
+        document.getElementById("step-title").textContent = step.title;
+        document.getElementById("step-prompt").textContent = step.prompt;
+        document.getElementById("response-label").textContent = step.label;
+        responseField.placeholder = step.placeholder;
+        responseField.value = responses[activeStep];
+        progressLabel.textContent = `Step ${activeStep + 1} of 3: ${step.progress}`;
+        document.getElementById("submit-step").innerHTML = activeStep === 2 ? 'Complete proposal <span aria-hidden="true">✓</span>' : 'Save step and continue <span aria-hidden="true">→</span>';
+        progressBars.forEach((bar, index) => { bar.className = `progress-bar h-1.5 flex-1 rounded-full ${index <= activeStep ? "bg-fuchsia-400" : "bg-zinc-700"}`; });
+        pathItems.forEach((item, index) => {
+          const number = item.querySelector(".path-number");
+          const status = item.querySelector(".path-status");
+          item.classList.toggle("border-fuchsia-400/25", index === activeStep);
+          item.classList.toggle("bg-fuchsia-500/[0.07]", index === activeStep);
+          item.classList.toggle("border-emerald-400/15", index < activeStep);
+          item.classList.toggle("bg-emerald-400/[0.04]", index < activeStep);
+          item.classList.toggle("border-white/[0.05]", index > activeStep);
+          item.classList.toggle("bg-[#1f1f23]/60", index > activeStep);
+          number.className = `path-number grid h-7 w-7 shrink-0 place-items-center rounded-full border text-xs font-bold ${index < activeStep ? "border-emerald-300/30 bg-emerald-400/10 text-emerald-200" : index === activeStep ? "border-fuchsia-300/30 bg-fuchsia-500/15 text-fuchsia-200" : "border-zinc-700 text-zinc-500"}`;
+          number.textContent = index < activeStep ? "✓" : String(index + 1);
+          status.textContent = index < activeStep ? "DONE" : index === activeStep ? "NOW" : "";
+          status.className = `path-status text-[10px] font-semibold ${index < activeStep ? "text-emerald-300" : index === activeStep ? "text-fuchsia-200" : "text-zinc-600"}`;
+        });
+        hintCard.hidden = true;
+        hintCard.textContent = "";
+        document.querySelectorAll(".hint-trigger").forEach((button) => button.classList.remove("border-fuchsia-400/40", "text-fuchsia-100"));
+        feedback.hidden = true;
+        feedback.textContent = "";
+      }
+
+      document.getElementById("autofill-button").addEventListener("click", () => {
+        responseField.value = steps[activeStep].mock;
+        responses[activeStep] = responseField.value;
+        responseField.focus();
+        feedback.textContent = steps[activeStep].mockNote || "Demo response added. Review it, then submit this step.";
+        feedback.hidden = false;
+      });
+
+      document.querySelectorAll(".hint-trigger").forEach((button) => button.addEventListener("click", () => {
+        const step = steps[activeStep];
+        hintCard.textContent = button.dataset.hint === "simple" ? step.simple : step.example;
+        hintCard.hidden = false;
+        hintCard.classList.remove("fade-in");
+        void hintCard.offsetWidth;
+        hintCard.classList.add("fade-in");
+        document.querySelectorAll(".hint-trigger").forEach((trigger) => trigger.classList.remove("border-fuchsia-400/40", "text-fuchsia-100"));
+        button.classList.add("border-fuchsia-400/40", "text-fuchsia-100");
+      }));
+
+      responseField.addEventListener("input", () => { responses[activeStep] = responseField.value; });
+
+      document.getElementById("submit-step").addEventListener("click", () => {
+        responses[activeStep] = responseField.value.trim();
+        if (!responses[activeStep]) {
+          feedback.textContent = "Add a few words first. A rough idea is a great start.";
+          feedback.hidden = false;
+          responseField.focus();
+          return;
+        }
+        if (activeStep < steps.length - 1) {
+          const submittedAnswer = responses[activeStep];
+          const nextStepHint = getResponseAwareHint(activeStep, submittedAnswer);
+          activeStep += 1;
+          renderStep();
+          feedback.textContent = nextStepHint;
+          feedback.hidden = false;
+          document.getElementById("workflow-heading").scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+        showCompletion();
+      });
+
+      function getResponseAwareHint(stepIndex, answer) {
+        const cues = [
+          { pattern: /prompt|hint|scaffold|feature|check[- ]?in|reminder|question/i, yes: "You’ve named a clear feature. Next, connect it to a change the learner would notice.", no: "Good start. Make the feature concrete: what would the app show or do?" },
+          { pattern: /load|overwhelm|focus|attention|flow|effort|engag|time|cognitive|stress/i, yes: "You’ve identified a user impact. Next, think about one simple way to check whether it happens.", no: "You’re building the impact story. Add how the feature could change the learner’s focus or effort." }
+        ];
+        const cue = cues[stepIndex];
+        return cue.pattern.test(answer) ? cue.yes : cue.no;
+      }
+
+      function showCompletion() {
+        saveCompletedProposal();
+        const summary = document.getElementById("proposal-summary");
+        summary.replaceChildren();
+        steps.forEach((step, index) => {
+          const item = document.createElement("li");
+          item.className = "rounded-xl border border-white/[0.07] bg-[#1f1f23] p-4";
+          const heading = document.createElement("p");
+          heading.className = "text-[11px] font-bold uppercase tracking-[.12em] text-fuchsia-300";
+          heading.textContent = `0${index + 1} · ${step.summaryLabel}`;
+          const text = document.createElement("p");
+          text.className = "mt-2 text-sm leading-6 text-zinc-200";
+          text.textContent = responses[index];
+          item.append(heading, text);
+          summary.append(item);
+        });
+        pathItems.forEach((item, index) => {
+          const number = item.querySelector(".path-number");
+          const status = item.querySelector(".path-status");
+          item.classList.remove("border-fuchsia-400/25", "bg-fuchsia-500/[0.07]", "border-white/[0.05]", "bg-[#1f1f23]/60");
+          item.classList.add("border-emerald-400/15", "bg-emerald-400/[0.04]");
+          number.className = "path-number grid h-7 w-7 shrink-0 place-items-center rounded-full border border-emerald-300/30 bg-emerald-400/10 text-xs font-bold text-emerald-200";
+          number.textContent = "✓";
+          status.textContent = "DONE";
+          status.className = "path-status text-[10px] font-semibold text-emerald-300";
+          progressBars[index].className = "progress-bar h-1.5 flex-1 rounded-full bg-fuchsia-400";
+        });
+        workflowCard.hidden = true;
+        completionCard.hidden = false;
+        completionCard.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      document.getElementById("return-button").addEventListener("click", () => {
+        responses.fill("");
+        activeStep = 0;
+        currentTask = "";
+        uploadedFileName = "";
+        taskInput.value = "";
+        document.getElementById("task-file-input").value = "";
+        uploadStatus.textContent = "PDF and text files supported";
+        taskEntryPanel.hidden = false;
+        stepWorkflow.hidden = true;
+        taskEntryFeedback.hidden = true;
+        responseField.value = "";
+        hintCard.hidden = true;
+        hintCard.textContent = "";
+        completionCard.hidden = true;
+        workflowCard.hidden = false;
+        renderStep();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        taskInput.focus({ preventScroll: true });
+      });
+
+      renderLibrary();
+      renderStep();
+    })();
+  </script>
+</body>
 </html>
