@@ -4,76 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#151419" />
-    <meta name="description" content="Next Step turns an overwhelming assignment into one small action." />
-    <title>Next Step — Study space</title>
+    <meta name="description" content="Turn a hard task into one small next step." />
+    <title>Next Step — Start here</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="app-shell">
-      <header class="topbar">
-        <a class="brand" href="#top" aria-label="Next Step home"><span class="brand-mark"><i></i><i></i><i></i></span><span>next<span>step</span></span></a>
-        <div class="topbar-note"><span class="online-dot"></span> Your private study space</div>
-        <button class="top-help" id="help-button" type="button">How it works</button>
-      </header>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Next Step home"><span class="brand-mark"><i></i><i></i><i></i></span><span>next<span>step</span></span></a>
+      <span class="top-note">One step at a time</span>
+    </header>
 
-      <main class="page" id="top">
-        <section class="welcome-row">
-          <div><div class="eyebrow"><span></span> YOUR STUDY SPACE</div><h1>Big assignment?<br /><em>Start small.</em></h1><p class="welcome-copy">We’ll figure out the next step together.</p></div>
-          <div class="time-card"><span class="time-icon">◷</span><span><small>QUICK SESSION</small><strong>About 5 minutes</strong></span></div>
-        </section>
+    <main class="page" id="top">
+      <section class="intro">
+        <div class="eyebrow"><span></span> YOUR WORKSPACE</div>
+        <h1>Start with one<br /><em>small step.</em></h1>
+        <p>Bring a hard task. We’ll make it easier to begin.</p>
+      </section>
 
-        <section class="assignment-card" aria-labelledby="assignment-title">
-          <div class="assignment-meta"><span class="course-chip">START HERE</span><span>Paste your task or use the sample</span></div>
-          <label class="assignment-label" for="assignment-prompt" id="assignment-title">What are you working on?</label>
-          <textarea class="assignment-prompt-input" id="assignment-prompt" rows="2">Assignment: Design 1 feature for a student stress-relief app based on the study.</textarea>
-          <div class="assignment-tools"><div class="attached-file"><span class="pdf-icon">PDF</span><span id="file-name">Westley_et_al_2026_Wellness.pdf</span><span class="file-ready" id="file-ready">Ready</span></div><button class="upload-button" id="upload-button" type="button"><span>↑</span> Upload PDF / Assignment</button><button class="source-link" id="source-button" type="button">About the paper <span class="source-arrow">↗</span></button></div>
-          <button class="start-button" id="breakdown-button" type="button"><span>✦</span><span>Break this down</span><b>→</b></button>
-        </section>
-
-        <section class="study-workspace" id="work-area" hidden aria-live="polite">
-          <div class="plan-bar">
-            <div><span class="plan-label">YOUR PLAN</span><strong id="progress-message">A few small steps. You can do this.</strong></div>
-            <div class="progress-summary"><span id="progress-number">0%</span><div class="progress-track"><span id="progress-bar"></span></div></div>
+      <section class="task-card" aria-labelledby="task-heading">
+        <div class="section-top"><div><span class="section-kicker">START HERE</span><h2 id="task-heading">What do you need to do?</h2></div><span class="step-time">About 5 min to start</span></div>
+        <div class="demo-tools" aria-label="Demo helpers">
+          <span class="demo-label">DEMO HELPERS</span>
+          <button type="button" id="demo-task-button">Demo: Load Sample Task</button>
+          <button type="button" id="demo-pdf-button">Demo: Load Sample PDF</button>
+        </div>
+        <label class="visually-hidden" for="task-input">Type or paste your assignment</label>
+        <textarea id="task-input" rows="3" placeholder="Type or paste your assignment here…"></textarea>
+        <div class="task-actions">
+          <div class="upload-group">
+            <input id="file-input" type="file" accept=".pdf,.doc,.docx,.txt" hidden />
+            <button type="button" class="upload-button" id="upload-button"><span>＋</span> Upload Assignment / PDF</button>
+            <span class="attached-file" id="attached-file" hidden><span class="pdf-icon">PDF</span><span id="file-name"></span><button type="button" id="remove-file" aria-label="Remove attached file">×</button></span>
           </div>
-          <div class="step-track" aria-label="Assignment progress">
-            <div class="track-step current" id="track-one"><span>1</span><small>Pick a problem</small></div><i></i>
-            <div class="track-step" id="track-two"><span>2</span><small>Choose a feature</small></div><i></i>
-            <div class="track-step" id="track-three"><span>3</span><small>Say how it helps</small></div>
-          </div>
+          <button type="button" class="primary-button" id="breakdown-button">Break it down <span>→</span></button>
+        </div>
+      </section>
 
-          <div class="active-layout">
-            <section class="active-card" aria-labelledby="active-title">
-              <div class="active-kicker"><span class="active-spark">✦</span><span id="active-label">STEP 1 OF 3</span></div>
-              <h2 id="active-title">Pick one problem to solve.</h2>
-              <p class="active-description" id="active-description">Choose what a student might need help with.</p>
-              <div class="active-content" id="active-content"></div>
-              <div class="active-footer"><button class="citation-link" id="active-citation" type="button"><span>▤</span><span>See where this idea comes from</span><span>↗</span></button><button class="continue-button" id="continue-button" type="button"><span>Save this step</span><b>→</b></button></div>
-            </section>
-
-            <aside class="coach-card">
-              <div class="coach-heading"><span class="coach-icon">✧</span><div><small>A LITTLE HELP</small><h3>Try a different angle</h3></div></div>
-              <div class="helper-content" id="helper-content" aria-live="polite">One small win can be enough to get started.</div>
-              <div class="helper-actions" aria-label="Helpful options">
-                <button type="button" data-help="smaller"><span>↘</span> Make it smaller</button>
-                <button type="button" data-help="simple"><span>☼</span> Explain simply</button>
-                <button type="button" data-help="example"><span>✦</span> Show an example</button>
-                <button type="button" data-help="quiz"><span>?</span> Test my knowledge</button>
-              </div>
-              <div class="coach-foot"><span class="mock-dot"></span> Example help · ready to try</div>
-            </aside>
-          </div>
-          <div class="encouragement" id="encouragement" hidden><span>✦</span><p><strong id="encouragement-title">One small step done — you’ve got this!</strong><small id="encouragement-copy">Ready for what comes next?</small></p><button id="encouragement-next" type="button" aria-label="Continue to next step">→</button></div>
+      <section class="plan" id="plan" hidden aria-live="polite">
+        <div class="plan-header"><div><span class="section-kicker">YOUR 3 STEPS</span><h2 id="plan-title">A clear path forward</h2></div><div class="progress"><strong id="progress-number">0%</strong><div class="progress-track"><span id="progress-bar"></span></div></div></div>
+        <ol class="step-list">
+          <li class="step-row active" id="step-row-0"><span class="step-number">1</span><span class="step-name">Pick 1 core idea from the material</span><span class="step-state" id="step-state-0">Now</span></li>
+          <li class="step-row" id="step-row-1"><span class="step-number">2</span><span class="step-name">Sketch or write 1 simple feature idea</span><span class="step-state" id="step-state-1"></span></li>
+          <li class="step-row" id="step-row-2"><span class="step-number">3</span><span class="step-name">Write a 2-sentence summary</span><span class="step-state" id="step-state-2"></span></li>
+        </ol>
+        <section class="active-step" aria-labelledby="active-title">
+          <div class="active-heading"><span class="active-icon">✦</span><div><span class="active-kicker" id="active-kicker">STEP 1 · YOUR FIRST IDEA</span><h3 id="active-title">Pick one useful idea from your material.</h3></div></div>
+          <p class="active-prompt" id="active-prompt">What stood out to you? Write a few words to get started.</p>
+          <div class="help-tools"><button type="button" data-helper="simple">Explain simply</button><button type="button" data-helper="example">Show example</button></div>
+          <div class="hint" id="hint" hidden aria-live="polite"></div>
+          <label class="visually-hidden" for="response-input">Your quick response</label>
+          <textarea id="response-input" rows="3" placeholder="Write your quick response…"></textarea>
+          <div class="step-actions"><span class="response-note">A few words is enough.</span><button type="button" class="done-button" id="done-button">Mark Step Done <span>✓</span></button></div>
         </section>
+        <div class="encouragement" id="encouragement" hidden><span class="encouragement-star">✦</span><p><strong id="encouragement-title">One small step done — you’ve got this!</strong><small id="encouragement-copy">Ready for the next step?</small></p></div>
+      </section>
 
-        <footer class="page-footer"><span>Made for learning, one step at a time.</span><span><i></i> Your work stays yours</span></footer>
-      </main>
-    </div>
-
+      <footer class="footer"><span>Made for learning, one step at a time.</span><span>✦</span></footer>
+    </main>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <dialog class="info-dialog" id="info-dialog" aria-labelledby="dialog-title"><button class="dialog-x" id="dialog-close" type="button" aria-label="Close">×</button><div class="dialog-kicker">✦ A NOTE FOR YOU</div><h2 id="dialog-title">A small step is still progress.</h2><p id="dialog-copy">Next Step gives you short prompts and examples to help you get going. You choose what to use and write your own work.</p><button class="dialog-done" id="dialog-done" type="button">Got it</button></dialog>
     <script src="./app.js"></script>
   </body>
 </html>
