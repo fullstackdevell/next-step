@@ -47,22 +47,3 @@ Recall practice currently uses prepared mock decks only. Assignment text and upl
 ![Recall practice with prepared study set](screenshots/04-recall-practice.png)
 
 ![Recall practice study plan](screenshots/05-recall-plan.png)
-
-## Run locally
-
-Open `index.html` in a browser, or start a static server from the project folder:
-
-```sh
-python3 -m http.server 4173
-```
-
-Then visit <http://localhost:4173>.
-
-Tailwind CSS and Google Fonts load from CDNs. PDF and text assignment uploads are supported in the assignment workflow; PDF text extraction loads PDF.js on demand. Custom classes, completed homework, and recall history use browser storage when available.
-
-## Project files
-
-- `index.html` — main assignment workflow and homework library.
-- `styles.css` — custom styles and accessibility states.
-- `app.js` — class scenarios, workflow interactions, and local homework storage.
-- `recall.html` and `recall.js` — prepared study plans, flashcard practice, results, and history.
