@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#151419" />
+    <meta name="theme-color" content="#18181b" />
     <meta name="description" content="Turn a hard task into one small next step." />
     <title>Next Step — Start here</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,19 +20,26 @@
     <main class="page" id="top">
       <section class="intro">
         <div class="eyebrow"><span></span> YOUR WORKSPACE</div>
-        <h1>Start with one<br /><em>small step.</em></h1>
-        <p>Bring a hard task. We’ll make it easier to begin.</p>
+        <h1>Pick a task.<br /><em>Start small.</em></h1>
+        <p>Choose a class, then turn the work into clear next steps.</p>
       </section>
 
       <section class="task-card" aria-labelledby="task-heading">
-        <div class="section-top"><div><span class="section-kicker">START HERE</span><h2 id="task-heading">What do you need to do?</h2></div><span class="step-time">About 5 min to start</span></div>
+        <div class="section-top"><div><span class="section-kicker">START HERE</span><h2 id="task-heading">What are you working on?</h2></div><span class="step-time">About 5 min to start</span></div>
+        <label class="field-label" for="course-select">Choose a class or task</label>
+        <select id="course-select">
+          <option value="">Choose a class or task…</option>
+          <option value="hci">Psychology / HCI — Write a feature proposal based on Westley et al. (2026)</option>
+          <option value="cs">Computer Science — Solve a coding problem, like Two Sum or array traversal</option>
+          <option value="english">English / Literature — Analyze character motivation in a short essay</option>
+        </select>
         <div class="demo-tools" aria-label="Demo helpers">
           <span class="demo-label">DEMO HELPERS</span>
           <button type="button" id="demo-task-button">Demo: Load Sample Task</button>
           <button type="button" id="demo-pdf-button">Demo: Load Sample PDF</button>
         </div>
-        <label class="visually-hidden" for="task-input">Type or paste your assignment</label>
-        <textarea id="task-input" rows="3" placeholder="Type or paste your assignment here…"></textarea>
+        <div class="field-label-row"><label class="field-label" for="task-input">Your assignment</label><button type="button" class="mock-fill" id="task-autofill">Auto-fill mock response</button></div>
+        <textarea id="task-input" rows="3" placeholder="Type or paste your assignment…"></textarea>
         <div class="task-actions">
           <div class="upload-group">
             <input id="file-input" type="file" accept=".pdf,.doc,.docx,.txt" hidden />
@@ -46,18 +53,22 @@
       <section class="plan" id="plan" hidden aria-live="polite">
         <div class="plan-header"><div><span class="section-kicker">YOUR 3 STEPS</span><h2 id="plan-title">A clear path forward</h2></div><div class="progress"><strong id="progress-number">0%</strong><div class="progress-track"><span id="progress-bar"></span></div></div></div>
         <ol class="step-list">
-          <li class="step-row active" id="step-row-0"><span class="step-number">1</span><span class="step-name">Pick 1 core idea from the material</span><span class="step-state" id="step-state-0">Now</span></li>
-          <li class="step-row" id="step-row-1"><span class="step-number">2</span><span class="step-name">Sketch or write 1 simple feature idea</span><span class="step-state" id="step-state-1"></span></li>
-          <li class="step-row" id="step-row-2"><span class="step-number">3</span><span class="step-name">Write a 2-sentence summary</span><span class="step-state" id="step-state-2"></span></li>
+          <li class="step-row active" id="step-row-0"><span class="step-number">1</span><span class="step-name" id="step-name-0">Pick 1 core idea from the material</span><span class="step-state" id="step-state-0">Now</span></li>
+          <li class="step-row" id="step-row-1"><span class="step-number">2</span><span class="step-name" id="step-name-1">Sketch or write 1 simple feature idea</span><span class="step-state" id="step-state-1"></span></li>
+          <li class="step-row" id="step-row-2"><span class="step-number">3</span><span class="step-name" id="step-name-2">Write a 2-sentence summary</span><span class="step-state" id="step-state-2"></span></li>
         </ol>
-        <section class="active-step" aria-labelledby="active-title">
-          <div class="active-heading"><span class="active-icon">✦</span><div><span class="active-kicker" id="active-kicker">STEP 1 · YOUR FIRST IDEA</span><h3 id="active-title">Pick one useful idea from your material.</h3></div></div>
-          <p class="active-prompt" id="active-prompt">What stood out to you? Write a few words to get started.</p>
+        <section class="active-step" id="active-step" aria-labelledby="active-title">
+          <div class="active-heading"><span class="active-icon">✦</span><div><span class="active-kicker" id="active-kicker">STEP 1</span><h3 id="active-title">Pick one core idea.</h3></div></div>
+          <p class="active-prompt" id="active-prompt">What’s one useful idea from the material?</p>
           <div class="help-tools"><button type="button" data-helper="simple">Explain simply</button><button type="button" data-helper="example">Show example</button></div>
           <div class="hint" id="hint" hidden aria-live="polite"></div>
-          <label class="visually-hidden" for="response-input">Your quick response</label>
+          <div class="field-label-row response-label-row"><label class="field-label" for="response-input">Your quick response</label><button type="button" class="mock-fill" id="response-autofill">Auto-fill mock response</button></div>
           <textarea id="response-input" rows="3" placeholder="Write your quick response…"></textarea>
           <div class="step-actions"><span class="response-note">A few words is enough.</span><button type="button" class="done-button" id="done-button">Mark Step Done <span>✓</span></button></div>
+        </section>
+        <section class="completion-card" id="completion-card" hidden aria-live="polite">
+          <div class="completion-badge">✓</div><div><span class="active-kicker">TASK COMPLETE</span><h3>Nice job! Step completed.</h3><p>Task complete — you built momentum!</p></div>
+          <button type="button" class="return-button" id="return-button">Return to Main Dashboard <span>↗</span></button>
         </section>
         <div class="encouragement" id="encouragement" hidden><span class="encouragement-star">✦</span><p><strong id="encouragement-title">One small step done — you’ve got this!</strong><small id="encouragement-copy">Ready for the next step?</small></p></div>
       </section>
