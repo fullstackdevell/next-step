@@ -34,14 +34,19 @@ Recall practice currently uses prepared mock decks only. Assignment text and upl
 
 ## Screenshots
 
-Add the screenshots from the demo to `screenshots/` using these filenames. The images will appear here once added:
+### Assignment workflow
 
-1. `screenshots/01-home-and-demo-choices.png` — starting screen with the three quick demo choices.
-2. `screenshots/02-guided-workflow.png` — an active step with progress and the demo-fill control visible.
-3. `screenshots/03-completion-and-homework.png` — completed workflow and Homework entry.
-4. `screenshots/04-recall-practice.png` — flashcard results or the prepared study plan.
+![Home screen with class scenarios](screenshots/01-home.png)
 
-<!-- Replace this note with the four Markdown image links after screenshots are added. -->
+![Guided assignment workflow](screenshots/02-guided-workflow.png)
+
+![Completed assignment summary](screenshots/03-completion.png)
+
+### Recall practice
+
+![Recall practice with prepared study set](screenshots/04-recall-practice.png)
+
+![Recall practice study plan](screenshots/05-recall-plan.png)
 
 ## Run locally
 
