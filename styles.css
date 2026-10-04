@@ -18,5 +18,8 @@ textarea { resize: vertical; }
 .rating-button[data-rating="got"]:hover { border-color: rgb(52 211 153 / .65); background: rgb(16 185 129 / .14); }
 .hint-button { min-height: 38px; border: 1px solid rgb(82 82 91 / .8); border-radius: .6rem; background: rgb(39 39 42 / .65); padding: .5rem .75rem; color: #d4d4d8; font-size: .72rem; font-weight: 600; transition: border-color .15s ease, color .15s ease, background .15s ease; }
 .hint-button:hover { border-color: rgb(125 211 252 / .5); background: rgb(56 189 248 / .08); color: #e0f2fe; }
+.mock-set-button { min-height: 82px; border: 1px solid rgb(82 82 91 / .65); border-radius: .85rem; background: #1f1f23; padding: .9rem 1rem; text-align: left; color: #fafafa; transition: border-color .15s ease, background .15s ease, transform .15s ease; }
+.mock-set-button:hover { transform: translateY(-1px); border-color: rgb(217 70 239 / .45); }
+.mock-set-button.mock-set-selected { border-color: rgb(217 70 239 / .7); background: rgb(217 70 239 / .1); box-shadow: inset 0 0 0 1px rgb(217 70 239 / .15); }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }

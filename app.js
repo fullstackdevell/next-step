@@ -211,10 +211,9 @@
       details.append(summary, task);
       const flow = flows[entry.flowId];
       (entry.responses || []).forEach((response, responseIndex) => { const text = document.createElement("p"); text.className = "mt-2 border-l border-fuchsia-400/30 pl-2 text-xs leading-5 text-zinc-300"; text.textContent = `${flow?.steps[responseIndex]?.summary || `Step ${responseIndex + 1}`}: ${response}`; details.append(text); });
-      const practice = document.createElement("button"); practice.type = "button"; practice.className = "mt-3 rounded-lg border border-fuchsia-400/25 px-3 py-2 text-xs font-semibold text-fuchsia-200 transition hover:bg-fuchsia-500/[0.08]"; practice.textContent = "Study this proposal";
+      const practice = document.createElement("button"); practice.type = "button"; practice.className = "mt-3 rounded-lg border border-fuchsia-400/25 px-3 py-2 text-xs font-semibold text-fuchsia-200 transition hover:bg-fuchsia-500/[0.08]"; practice.textContent = "Practice mock flashcards";
       practice.addEventListener("click", () => {
-        const studyText = [entry.task, ...(entry.responses || [])].filter(Boolean).join("\n\n");
-        try { sessionStorage.setItem("next-step-recall-seed", studyText); } catch { /* The recall page also accepts pasted material. */ }
+        try { sessionStorage.setItem("next-step-recall-flow", entry.flowId || "hci"); } catch { /* The recall page lets the user choose a mock deck. */ }
         window.location.href = "recall.html";
       });
       details.append(practice);
